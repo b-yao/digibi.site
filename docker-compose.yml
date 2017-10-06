@@ -11,4 +11,5 @@ services:
       - .:/site
     ports:
       - "8000:8000"
-    command: python manage.py runserver 0.0.0.0:8000
+    #command: python manage.py runserver 0.0.0.0:8000
+    current_year = timezone.now().yearQuestion.objects.get(pub_date__year=current_year)command: python manage.py makemigrations
