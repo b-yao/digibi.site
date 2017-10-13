@@ -3,12 +3,19 @@ version: '3'
 services:
   db:
     image: postgres
-  web:
+  exec_migrate:
     depends_on:
       - db
     build: .
     volumes:
       - .:/site
+    command: ./manage.py migrate
+  web:
+    depends_on:
+      - exec_migrate
+    build: .
+    volumes:
+      - .:/site
     ports:
       - "8000:8000"
-    command: sh -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"
+    command: ./manage.py runserver 0.0.0.0:8000
